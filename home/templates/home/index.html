@@ -1,4 +1,4 @@
-home/{% load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +68,21 @@ https://templatemo.com/tm-551-stand-blog
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                {% if request.user.is_authenticated %}
+                <div class="d-flex">
+                  <a class="nav-link" href="">{{request.user.username}}</a><span class="m-2">/</span>
+                  <a class="btn btn-danger" href="{% url "account:logout" %}" >logout</a>
+              </div>
+                    {% else %}
+                    <div class="d-flex">
+                      <a class="nav-link" href="{% url "account:login" %}">Login</a><span class="m-2">/</span>
+                      <a class="nav-link" href="{% url "account:Regester" %}">Regester</a>
+                  </div>
+                   
+                {% endif %}
+                
               </li>
             </ul>
           </div>
